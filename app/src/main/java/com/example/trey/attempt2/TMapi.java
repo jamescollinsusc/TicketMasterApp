@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 
 public class TMapi {
@@ -24,45 +25,28 @@ public class TMapi {
 
         try {
             URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            String result;
+            URLConnection discover = url.openConnection();
             try {
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(
+                                discover.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null)
+                    response.append(inputLine);
 
-                InputStream instream = (InputStream) url.getContent();
-                result = convertStreamToString(instream);
-                return result;
+                in.close();
+
+                return response.toString();
             }
-            finally{
-                urlConnection.disconnect();
+            finally {
+
             }
         }
         catch(Exception e) {
             Log.e("ERROR", e.getMessage(), e);
             return "messed up";
         }
-    }
-
-    private static String convertStreamToString(InputStream is) {
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-            while ((line = reader.readLine()) != null) {
-                String temp = line + "\n";
-                sb.append(temp);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
     }
 
     protected void onPostExecute(String response) {
