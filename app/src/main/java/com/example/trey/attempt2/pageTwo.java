@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 public class pageTwo extends AppCompatActivity {
 
+    String[] cities={"LA","Miami","New York"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
