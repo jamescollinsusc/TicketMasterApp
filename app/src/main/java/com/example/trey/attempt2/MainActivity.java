@@ -9,12 +9,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import static com.example.trey.attempt2.TMapi.doInBackground;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText mUsername;
     private EditText mPassword;
     private Button mLoginButton;
+    private TextView mjimmy;
+    private String timmy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        timmy = doInBackground();
+        mjimmy = (TextView) findViewById(R.id.JimmyTheShit);
         mUsername = (EditText) findViewById(R.id.username);
         mPassword = (EditText) findViewById(R.id.password);
         mLoginButton = (Button) findViewById(R.id.loginButton);
+        mjimmy.setText(timmy);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
