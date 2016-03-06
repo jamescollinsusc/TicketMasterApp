@@ -18,38 +18,24 @@ public class TMapi {
     protected void onPreExecute() {
 
     }
+    public static String getText() throws Exception {
+        URL website = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
+        URLConnection connection = website.openConnection();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(
+                        connection.getInputStream()));
 
-    protected static String doInBackground() {
+        StringBuilder response = new StringBuilder();
+        String inputLine;
 
-        // Do some validation here
+        while ((inputLine = in.readLine()) != null)
+            response.append(inputLine);
 
-        try {
-            URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
-            URLConnection discover = url.openConnection();
-            try {
-                /*BufferedReader in = new BufferedReader(
-                        new InputStreamReader(
-                                discover.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-                while ((inputLine = in.readLine()) != null)
-                    response.append(inputLine);
+        in.close();
 
-                in.close();
-
-                return response.toString();*/
-                System.out.print(discover.getContent());
-                return "hello";
-            }
-            finally {
-
-            }
-        }
-        catch(Exception e) {
-            Log.e("ERROR", e.getMessage(), e);
-            return "messed up";
-        }
+        return response.toString();
     }
+
 
     protected void onPostExecute(String response) {
         if(response == null) {
