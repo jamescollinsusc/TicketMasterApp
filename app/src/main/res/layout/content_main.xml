@@ -23,12 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Username"
         android:ems="10"
         android:id="@+id/username"
         android:layout_below="@+id/staticName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp" />
+        android:layout_marginTop="81dp"
+        android:hint="Enter Username" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
         android:layout_alignEnd="@+id/username"
         android:password="true"
         android:editable="true"
-        android:text="Password" />
+        android:hint="Enter Password" />
 
     <Button
         android:layout_width="wrap_content"
