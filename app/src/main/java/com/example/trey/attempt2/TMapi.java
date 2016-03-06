@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.View;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -25,7 +26,8 @@ public class TMapi {
             URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
-                return bobby;
+
+                return  (String) url.getContent();
             }
             finally{
                 urlConnection.disconnect();
