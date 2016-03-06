@@ -16,7 +16,7 @@ public class TMapi {
 
     }
 
-    protected String doInBackground(Void... urls) {
+    protected static String doInBackground() {
 
         // Do some validation here
 
