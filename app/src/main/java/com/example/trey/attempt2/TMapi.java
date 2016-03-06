@@ -38,7 +38,7 @@ public class TMapi {
         }
         catch(Exception e) {
             Log.e("ERROR", e.getMessage(), e);
-            return "fucked up";
+            return "messed up";
         }
     }
 
@@ -50,7 +50,8 @@ public class TMapi {
         String line;
         try {
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                String temp = line + "\n";
+                sb.append(temp);
             }
         } catch (IOException e) {
             e.printStackTrace();
