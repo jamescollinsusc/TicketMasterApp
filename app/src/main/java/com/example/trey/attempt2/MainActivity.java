@@ -1,9 +1,12 @@
 package com.example.trey.attempt2;
 
+import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telecom.Call;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +14,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static com.example.trey.attempt2.TMapi.doInBackground;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+import javax.security.auth.callback.Callback;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText mPassword;
     private Button mLoginButton;
     private TextView mjimmy;
-    private String timmy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +40,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        timmy = doInBackground();
         mjimmy = (TextView) findViewById(R.id.JimmyTheShit);
         mUsername = (EditText) findViewById(R.id.username);
         mPassword = (EditText) findViewById(R.id.password);
         mLoginButton = (Button) findViewById(R.id.loginButton);
-        mjimmy.setText(timmy);
+        try {
+            mjimmy.setText(TM());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,5 +84,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private static String TM() throws IOException {
+
+        try {
+            URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line).append("\n");
+                }
+                bufferedReader.close();
+                return stringBuilder.toString();
+            }
+            finally{
+                urlConnection.disconnect();
+            }
+        }
+        catch(Exception e) {
+            Log.e("ERROR", e.getMessage(), e);
+            return "help";
+        }
     }
 }
