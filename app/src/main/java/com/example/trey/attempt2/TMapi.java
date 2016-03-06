@@ -21,17 +21,11 @@ public class TMapi {
         // Do some validation here
 
         try {
+            String bobby = "worked";
             URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line).append("\n");
-                }
-                bufferedReader.close();
-                return stringBuilder.toString();
+                return bobby;
             }
             finally{
                 urlConnection.disconnect();
@@ -39,7 +33,7 @@ public class TMapi {
         }
         catch(Exception e) {
             Log.e("ERROR", e.getMessage(), e);
-            return null;
+            return "fucked up";
         }
     }
 
