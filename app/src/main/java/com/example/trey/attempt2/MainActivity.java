@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(String username, String password) {
-    Intent i = new Intent(this, pageTwo.class);
+        Intent i = new Intent(this, pageTwo.class);
         startActivity(i);
     }
 
