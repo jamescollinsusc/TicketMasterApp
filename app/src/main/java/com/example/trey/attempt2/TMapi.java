@@ -22,7 +22,6 @@ public class TMapi {
         // Do some validation here
 
         try {
-            String bobby = "worked";
             URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
