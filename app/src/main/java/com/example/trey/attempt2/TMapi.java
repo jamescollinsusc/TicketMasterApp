@@ -27,7 +27,7 @@ public class TMapi {
             URL url = new URL("https://app.ticketmaster.com/discovery/v1/events.json?postalCode=90007&apikey=pGNwjKe1ggesYToqvem4wg7DgvyuInuV");
             URLConnection discover = url.openConnection();
             try {
-                BufferedReader in = new BufferedReader(
+                /*BufferedReader in = new BufferedReader(
                         new InputStreamReader(
                                 discover.getInputStream()));
                 StringBuilder response = new StringBuilder();
@@ -37,7 +37,9 @@ public class TMapi {
 
                 in.close();
 
-                return response.toString();
+                return response.toString();*/
+                System.out.print(discover.getContent());
+                return "hello";
             }
             finally {
 
