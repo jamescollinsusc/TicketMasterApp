@@ -12,16 +12,16 @@ import android.widget.Toast;
 public class pageTwo extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
 
-    private String[] cities={"City", "LA","Miami","New York"};
-    private Spinner chooseCity = (Spinner) findViewById(R.id.citySpinner);
-    private EditText testText;
+     String[] cities={"City", "LA","Miami","New York"};
+     Spinner chooseCity;
+     EditText testText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_two);
 
-
+     chooseCity = (Spinner) findViewById(R.id.citySpinner);
 
     chooseCity.setOnItemSelectedListener(this);
 
@@ -36,8 +36,8 @@ public class pageTwo extends AppCompatActivity implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
         Toast.makeText(getApplicationContext(), cities[position], Toast.LENGTH_LONG).show();
-        String chosenCity = chooseCity.getSelectedItem().toString();
-        testText.setText(chosenCity);
+       String chosenCity = chooseCity.getSelectedItem().toString();
+        //testText.setText(chosenCity);
     }
 
     @Override
@@ -45,9 +45,4 @@ public class pageTwo extends AppCompatActivity implements AdapterView.OnItemSele
 // TODO Auto-generated method stub
     }
 
-
-
-    public void useSpinner(String chosenCity) {
-
-    }
 }
